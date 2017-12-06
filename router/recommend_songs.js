@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express();
 const { createWebAPIRequest } = require("../util/util");
-const mock = require("../mock");
+const mock = require("../mock/recommend");
 
 router.get("/", (req, res) => {
   const cookie = req.get("Cookie") ? req.get("Cookie") : "";
@@ -19,11 +19,7 @@ router.get("/", (req, res) => {
     data,
     cookie,
     music_req => {
-      if (!music_req.msg || music_req.code == 301) {
-        res.send(mock);
-      } else {
-        res.send(music_req);
-      }
+      res.send(music_req);
     },
     err => res.status(502).send("fetch error")
   );

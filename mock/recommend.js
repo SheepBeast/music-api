@@ -1,4 +1,4 @@
-module.exports = {
+var recommends = {
   code: 200,
   recommend: [
     {
@@ -5232,3 +5232,14 @@ module.exports = {
     }
   ]
 };
+
+function shuffle() {
+  return {
+    code: 200,
+    recommend: recommends.recommend.sort(()=>{
+      return 0.5 - Math.random()
+    })
+  }
+}
+
+module.exports = shuffle

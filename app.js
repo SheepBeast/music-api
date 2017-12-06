@@ -4,6 +4,9 @@ const apicache = require("apicache");
 const app = express();
 let cache = apicache.middleware;
 
+const event = require('./mock/event')
+const recommend = require('./mock/recommend')
+
 // 跨域设置
 app.all("*", function(req, res, next) {
   if (req.path !== "/" && !req.path.includes(".")) {
@@ -32,8 +35,12 @@ app.use(
   })
 );
 
+
 // 获取每日推荐歌曲
-app.use("/recommend/songs", require("./router/recommend_songs"));
+app.use("/recommend/songs/get", require("./router/recommend_songs"));
+app.use("/recommend/songs", function(req, res){
+  res.send(recommend())
+});
 
 // 获取专辑内容
 app.use("/album", require("./router/album"));
@@ -69,6 +76,11 @@ app.use("/lyric", require("./router/lyric"));
 // 获取歌单内列表
 app.use("/playlist/detail", require("./router/playlist_detail"));
 app.use("/comment/playlist", require("./router/comment_playlist"));
+
+app.use('/event/get', require('./router/event'));
+app.use('/event', function(req, res){
+  res.send(event())
+});
 
 const port = process.env.PORT || 3000;
 
