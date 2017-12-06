@@ -1781,17 +1781,17 @@ var events = {
 }
 
 function shuffle() {
-    var date = new Date(),
-        time = date.getTime(),
-        today = time - (date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getSeconds() * 1000),
-        evts = events.event.slice()
+    var today = Date.now(),
+        evts = events.event.slice(),
+        interval = [1800000, 3600000, 86400000],
+        il = interval.length
 
-    evts.forEach(e => { e.showTime = today + parseInt(Math.random() * (time - 86400000)) })
+    evts.forEach(e => { e.showTime = today - parseInt(interval[Math.floor(Math.random() * il)] * Math.random()) })
 
     return {
         code: 200,
-        event: evts.sort((a, b) => {
-            return b.showTime - a.showTime
+        event: evts.sort(() => {
+            return 0.5 - Math.random()
         })
     }
 }
