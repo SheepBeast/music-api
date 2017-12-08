@@ -1,14 +1,18 @@
-# music-api
+## music-api
+> 原项目地址：[https://github.com/Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
-## 环境要求
+### 项目简介
+项目为NeteaseCloudMusicApi项目的缩减版，只保留了部分个人所需的API，并且增加一些mock数据
+
+### 环境要求
 需要 NodeJS 6.0+ 环境
 
-## 安装  
+### 安装  
 ``` shell
 $ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
 $ npm install
 ```
-## 运行
+### 运行
 ``` shell
 $ node app.js 
 ```
