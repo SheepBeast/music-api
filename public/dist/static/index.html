@@ -4,7 +4,35 @@
 <head>
   <meta charset=utf-8>
   <title>index</title>
-  <script type="text/javascript" src="./js/checkBrowser.js"></script>
+  <script type="text/javascript">
+    function browserRedirect() {
+      var sUserAgent = navigator.userAgent.toLowerCase(),
+        bIsIpad = sUserAgent.match(/ipad/i) == "ipad",
+        bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os",
+        bIsMidp = sUserAgent.match(/midp/i) == "midp",
+        bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4",
+        bIsUc = sUserAgent.match(/ucweb/i) == "ucweb",
+        bIsAndroid = sUserAgent.match(/android/i) == "android",
+        bIsCE = sUserAgent.match(/windows ce/i) == "windows ce",
+        bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+      if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        window.location.href = 'http://39.106.10.121/dist2/index.html';
+      } else {
+        var browser = navigator.appName,
+          b_version = navigator.appVersion,
+          version = b_version.split(";"),
+          trim_Version = version[1].replace(/[ ]/g, "");
+        if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE6.0" || trim_Version == "MSIE7.0" || trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
+          alert("你当前浏览器无法正常加载页面，请升级浏览器");
+          window.location.href = 'https://browsehappy.com/';
+        }else{
+          window.location.href = 'http://39.106.10.121/dist/static/html/demo.html'
+        }
+      }
+    }
+    browserRedirect(); 
+  </script>
 </head>
 
 </html>
